@@ -4,11 +4,15 @@ import com.cx.cxpicturebackend.common.BaseResponse;
 import com.cx.cxpicturebackend.common.ResultUtils;
 import com.cx.cxpicturebackend.exception.ErrorCode;
 import com.cx.cxpicturebackend.exception.ThrowUtils;
+import com.cx.cxpicturebackend.model.entity.User;
+import com.cx.cxpicturebackend.model.vo.LoginUserVO;
+import com.cx.cxpicturebackend.model.dto.UserLoginRequest;
 import com.cx.cxpicturebackend.model.dto.UserRegisterRequest;
 import com.cx.cxpicturebackend.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")
@@ -32,4 +36,21 @@ public class UserController {
         );
         return ResultUtils.success(result);
     }
+
+    @PostMapping("/login")
+    public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+        ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
+        String userAccount = userLoginRequest.getUserAccount();
+        String userPassword = userLoginRequest.getUserPassword();
+        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+        return ResultUtils.success(loginUserVO);
+    }
+
+    @GetMapping("/get/login")
+    public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        return ResultUtils.success(userService.getLoginUserVO(loginUser));
+    }
+
+
 }
