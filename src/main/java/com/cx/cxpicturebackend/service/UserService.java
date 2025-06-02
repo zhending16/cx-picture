@@ -1,10 +1,14 @@
 package com.cx.cxpicturebackend.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.cx.cxpicturebackend.model.dto.user.UserQueryRequest;
 import com.cx.cxpicturebackend.model.vo.LoginUserVO;
 import com.cx.cxpicturebackend.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cx.cxpicturebackend.model.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author 86178
@@ -47,6 +51,29 @@ public interface UserService extends IService<User> {
      */
     User getLoginUser(HttpServletRequest request);
 
+    /**
+     * 用户注销
+     * @param request
+     * @return
+     */
     boolean userLogout(HttpServletRequest request);
 
+    UserVO getUserVO(User user);
+
+    List<UserVO> getUserVOList(List<User> userList);
+
+    /**
+     *
+     * @param userQueryRequest
+     * @return
+     */
+    QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
+
+    /**
+     * 获取加密后的密码
+     *
+     * @param userPassword
+     * @return
+     */
+    String getEncryptPassword(String userPassword);
 }
