@@ -9,6 +9,7 @@ import com.cx.cxpicturebackend.model.vo.LoginUserVO;
 import com.cx.cxpicturebackend.model.dto.UserLoginRequest;
 import com.cx.cxpicturebackend.model.dto.UserRegisterRequest;
 import com.cx.cxpicturebackend.service.UserService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -52,5 +53,10 @@ public class UserController {
         return ResultUtils.success(userService.getLoginUserVO(loginUser));
     }
 
-
+    @PostMapping("/logout")
+    public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
+        ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
+        boolean result = userService.userLogout(request);
+        return ResultUtils.success(result);
+    }
 }
