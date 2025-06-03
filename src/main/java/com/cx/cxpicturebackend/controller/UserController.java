@@ -49,6 +49,12 @@ public class UserController {
         return ResultUtils.success(result);
     }
 
+    /**
+     * 用户登录
+     * @param userLoginRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
@@ -58,12 +64,22 @@ public class UserController {
         return ResultUtils.success(loginUserVO);
     }
 
+    /**
+     * 获取当前登录用户
+     * @param request
+     * @return
+     */
     @GetMapping("/get/login")
     public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
         User loginUser = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(loginUser));
     }
 
+    /**
+     * 用户注销
+     * @param request
+     * @return
+     */
     @PostMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
         ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);

@@ -32,3 +32,5 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.cx.cxpicturebackend.controller
+
+
