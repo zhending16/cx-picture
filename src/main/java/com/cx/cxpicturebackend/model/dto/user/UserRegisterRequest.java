@@ -1,4 +1,4 @@
-package com.cx.cxpicturebackend.model.dto;
+package com.cx.cxpicturebackend.model.dto.user;
 
 import lombok.Data;
 
@@ -7,12 +7,17 @@ import java.io.Serializable;
 @Data
 public class UserRegisterRequest implements Serializable {
 
-    private static final long serialVersionUID = 3191241716373120793L;
+    private static final long serialVersionUID = 8735650154179439661L;
 
     /**
-     * 账号
+     * 邮箱
      */
-    private String userAccount;
+    private String email;
+
+    /**
+     * 验证码
+     */
+    private String code;
 
     /**
      * 密码

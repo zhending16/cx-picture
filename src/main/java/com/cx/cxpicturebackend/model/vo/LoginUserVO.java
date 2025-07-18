@@ -7,11 +7,12 @@ import java.util.Date;
 
 /**
  * 已登录用户视图（脱敏）
- */@Data
+ */
+@Data
 public class LoginUserVO implements Serializable {
 
     /**
-     * 用户 id
+     * id
      */
     private Long id;
 
@@ -39,6 +40,11 @@ public class LoginUserVO implements Serializable {
      * 用户角色：user/admin
      */
     private String userRole;
+
+    /**
+     * 编辑时间
+     */
+    private Date editTime;
 
     /**
      * 创建时间

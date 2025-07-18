@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class User implements Serializable {
     /**
-     * id(要指定主键策略)
+     * id
      */
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
@@ -23,6 +23,11 @@ public class User implements Serializable {
      * 账号
      */
     private String userAccount;
+
+    /*
+     * 邮箱
+     */
+    private String email;
 
     /**
      * 密码
@@ -50,6 +55,21 @@ public class User implements Serializable {
     private String userRole;
 
     /**
+     * 会员过期时间
+     */
+    private Date vipExpireTime;
+
+    /**
+     * 会员兑换码
+     */
+    private String vipCode;
+
+    /**
+     * 会员编号
+     */
+    private Long vipNumber;
+
+    /**
      * 编辑时间
      */
     private Date editTime;
@@ -69,21 +89,6 @@ public class User implements Serializable {
      */
     @TableLogic
     private Integer isDelete;
-
-    /**
-     * 会员过期时间
-     */
-    private Date vipExpireTime;
-
-    /**
-     * 会员兑换码
-     */
-    private String vipCode;
-
-    /**
-     * 会员编号
-     */
-    private Long vipNumber;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

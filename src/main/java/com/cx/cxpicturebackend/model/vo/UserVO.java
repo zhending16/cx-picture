@@ -12,7 +12,7 @@ public class UserVO implements Serializable {
      * id
      */
     private Long id;
-    
+
     /**
      * 账号
      */
@@ -37,6 +37,21 @@ public class UserVO implements Serializable {
      * 用户角色：user/admin
      */
     private String userRole;
+
+    /**
+     * 会员过期时间
+     */
+    private Date vipExpireTime;
+
+    /**
+     * 会员兑换码
+     */
+    private String vipCode;
+
+    /**
+     * 会员编号
+     */
+    private Long vipNumber;
 
     /**
      * 创建时间
